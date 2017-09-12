@@ -2,14 +2,15 @@ package jan.sorting;
 
 public class MergeSort implements ISorter {
 
-    private int[] array;
-    private int[] tempMergArr;
+    private Comparable[] array;
+    private Comparable[] tempMergArr;
     private int length;
 
-    public int[] sort(int inputArr[]) {
+    public <T extends Comparable> T[] sort(T[] inputArr) {
         this.array = inputArr;
         this.length = inputArr.length;
-        this.tempMergArr = new int[length];
+        Object[] tmpArray = new Object[length];
+        this.tempMergArr = (T[]) tmpArray;
         doMergeSort(0, length - 1);
         return inputArr;
     }
@@ -18,11 +19,8 @@ public class MergeSort implements ISorter {
 
         if (lowerIndex < higherIndex) {
             int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
-            // Below step sorts the left side of the array
             doMergeSort(lowerIndex, middle);
-            // Below step sorts the right side of the array
             doMergeSort(middle + 1, higherIndex);
-            // Now merge both sides
             mergeParts(lowerIndex, middle, higherIndex);
         }
     }
@@ -36,8 +34,8 @@ public class MergeSort implements ISorter {
         int j = middle + 1;
         int k = lowerIndex;
         while (i <= middle && j <= higherIndex) {
-            if (tempMergArr[i] <= tempMergArr[j]) {
-                array[k] = tempMergArr[i];
+            if (tempMergArr[i].compareTo(tempMergArr[j]) <= 0) {
+                    array[k] = tempMergArr[i];
                 i++;
             } else {
                 array[k] = tempMergArr[j];

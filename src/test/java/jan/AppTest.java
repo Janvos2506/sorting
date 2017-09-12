@@ -84,6 +84,7 @@ public class AppTest
         }
     }
 
+
     public void printArray(int[] a)
     {
         System.out.print("[");

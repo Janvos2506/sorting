@@ -1,7 +1,7 @@
 package jan.sorting;
 
 public interface ISorter {
-    int[] sort(int[] a);
+    <T extends Comparable> T[] sort(T[] a);
 
 
 }
